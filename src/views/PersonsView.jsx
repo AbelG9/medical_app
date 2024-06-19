@@ -8,10 +8,8 @@ const PersonsView = () => {
   console.log({ data, error, loading });
 
   return (
-    <div className="container">
-      <div className="mb-3 justify-between pt-12 px-4">
+    <div className="text-gray-400 bg-gray-900 w-full h-screen">
         <PersonsTable persons={data}/>
-      </div>
     </div>
   );
 };

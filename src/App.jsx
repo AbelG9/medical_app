@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PersonsView from "./views/PersonsView";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1>Vite + React</h1>
+      <Router>
+        <Routes>
+          <Route path="/" element={<PersonsView />} />
+        </Routes>
+      </Router>
     </>
   )
 }

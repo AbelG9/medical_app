@@ -7,11 +7,7 @@ const PersonsView = () => {
 
   console.log({ data, error, loading });
 
-  return (
-    <div className="text-gray-400 bg-gray-900 w-full h-screen">
-        <PersonsTable persons={data}/>
-    </div>
-  );
+  return <PersonsTable persons={data} />;
 };
 
 export default PersonsView;

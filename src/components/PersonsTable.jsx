@@ -1,10 +1,10 @@
-const PersonsTable = ({persons}) => {
-  console.log(persons);
+import { Link } from "react-router-dom";
 
+const PersonsTable = ({persons}) => {
   return (
-    <section className="body-font px-4 pt-20">
+    <section className="body-font px-4 pt-16">
         <div className="container mx-auto">
-          <div className="flex flex-col text-center w-full mb-20">
+          <div className="flex flex-col text-center w-full mb-10">
             <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-white">Pacientes</h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Listado de pacientes</p>
           </div>
@@ -17,21 +17,28 @@ const PersonsTable = ({persons}) => {
                   <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">LastName</th>
                   <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Email</th>
                   <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Gender</th>
-                  <th className="w-10 title-font tracking-wider font-medium text-white text-sm bg-gray-800 rounded-tr rounded-br" />
+                  <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 rounded-tr rounded-br">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {
-                  persons ? (persons.map((person) => (
-                    <tr>
-                      <td className="px-4 py-3">{person.id}</td>
-                      <td className="px-4 py-3 text-lg text-white">{person.name}</td>
-                      <td className="px-4 py-3 text-lg text-white">{person.lastname}</td>
-                      <td className="px-4 py-3">{person.email}</td>
-                      <td className="px-4 py-3">{person.gender}</td>
-                      <td className="w-10 text-center">
-                        <input name="plan" type="radio" />
-                      </td>
+                  persons ? (persons.map(({id, name, lastname, email, gender}) => (
+                    <tr key={id}>
+                      <td className="px-4 py-3">{id}</td>
+                      <td className="px-4 py-3 text-lg text-white">{name}</td>
+                      <td className="px-4 py-3 text-lg text-white">{lastname}</td>
+                      <td className="px-4 py-3">{email}</td>
+                      <td className="px-4 py-3 capitalize">{gender}</td>
+                      {/* <td className="d-flex">
+                        <Link className="btn btn-primary btn-sm" to={`/editperson/${id}`}>
+                          <i className="fa-solid fa-pen-to-square"></i>
+                        </Link>
+                        <button className="btn btn-danger btn-sm ms-2" 
+                        // onClick={() => {handleEliminar(id)}}
+                        >
+                          <i className="fa-solid fa-trash"></i>
+                        </button>
+                      </td> */}
                     </tr>
                   )
                 )) : null

@@ -1,16 +1,26 @@
 import { useState, useEffect } from "react";
 import PersonsTable from "../components/PersonsTable";
 import Swal from "sweetalert2";
-import axios from "axios";
-import { getPersons, deletePersons } from "../services/personsService";
+import { getPersons, getPersonsCount, deletePersons } from "../services/personsService";
+import CardView from "../components/CardView";
+import Paginator from "../components/Paginator";
 
 const PersonsView = () => {
   const [data, setData] = useState(null);
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+  const [total, setTotal] = useState(null);
 
   const getData = async () => {
-    const getData = await getPersons();
+    const getData = await getPersons(page, perPage);
     setData(getData);
   };
+
+  const getDataCount = async () => {
+    const dataCount = await getPersonsCount();
+    console.log("dataCount: ", dataCount);
+    setTotal(dataCount);
+  }
 
   const handleEliminar = async (id) => {
     Swal.fire({
@@ -37,10 +47,22 @@ const PersonsView = () => {
   };
 
   useEffect(() => {
+    if (!total) {
+      getDataCount();
+    }
     getData();
-  }, []);
+  }, [page]);
 
-  return <PersonsTable persons={data} handleEliminar={handleEliminar} />;
+  if(data === null){
+    return <p>Cargando contenido...</p>
+  }
+
+  return (
+    <CardView>
+      <PersonsTable persons={data} handleEliminar={handleEliminar} />
+      <Paginator page={page} setPage={setPage} perPage={perPage} total={total}/>
+    </CardView>
+  );
 };
 
 export default PersonsView;

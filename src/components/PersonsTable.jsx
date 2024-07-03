@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
-import CardView from "../components/CardView";
 
 const PersonsTable = ({ persons, handleEliminar }) => {
   return (
-    <CardView>
+    <>
       <div className="flex flex-col text-center w-full mb-10">
         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2">
           PACIENTES
@@ -14,7 +13,7 @@ const PersonsTable = ({ persons, handleEliminar }) => {
         </p>
       </div>
       <div className="xl:w-4/5 w-full mx-auto overflow-auto">
-        <table className="table-auto w-full text-left whitespace-no-wrap">
+        <table className="table-auto w-full text-left whitespace-no-wrap border border-gray-700 rounded-s-lg">
           <thead className="bg-gray-700">
             <tr>
               <th className="px-4 py-3 title-font tracking-wider font-medium text-sm rounded-tl rounded-bl">
@@ -65,7 +64,7 @@ const PersonsTable = ({ persons, handleEliminar }) => {
           </tbody>
         </table>
       </div>
-    </CardView>
+    </>
   );
 };
 

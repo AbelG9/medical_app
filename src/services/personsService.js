@@ -1,9 +1,9 @@
 import axios from "axios";
 const URL = import.meta.env.VITE_ENDPOINT_BASE;
 
-const getPersons = async () => {
+const getPersons = async (page, perPage) => {
   try {
-    const url = `${URL}/persons`;
+    const url = `${URL}/persons?page=${page}&limit=${perPage}`;
     const options = {
       method: "get",
       data: null,
@@ -16,6 +16,22 @@ const getPersons = async () => {
     throw error;
   }
 };
+
+const getPersonsCount = async () => {
+  try {
+    const url = `${URL}/persons`;
+    const options = {
+      method: "get",
+      data: null,
+    };
+    const response = await axios({ url, ...options });
+    if (response.statusText === "OK") {
+      return response.data.length;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
 
 const getPersonById = async (id) => {
   try {
@@ -49,4 +65,4 @@ const deletePersons = async (id) => {
   }
 };
 
-export { getPersons, getPersonById, deletePersons };
+export { getPersons, getPersonsCount, getPersonById, deletePersons };

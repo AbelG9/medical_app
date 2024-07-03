@@ -1,22 +1,23 @@
 import { useState, useEffect } from "react";
 
-const Paginator = ({page, perPage, setPage, total}) => {
-  
+const Paginator = ({ page, perPage, setPage, total }) => {
   const [pages, setPages] = useState(0);
+  const [initialItem, setInitialItem] = useState(1);
+  const [finalItem, setFinalItem] = useState(1);
 
   const nextPage = () => {
     if (page !== pages) {
       let nextPage = page + 1;
       setPage(nextPage);
-    } 
-  }
+    }
+  };
 
   const prevPage = () => {
     if (page !== 1) {
       let prevPage = page - 1;
       setPage(prevPage);
     }
-  }
+  };
 
   const renderLi = () => {
     let li = [];
@@ -26,11 +27,11 @@ const Paginator = ({page, perPage, setPage, total}) => {
           <a
             href="#"
             className={`flex items-center justify-center px-3 h-9 leading-tight 
-            ${i === page ? 
-            `bg-gray-600 border border-gray-500 text-gray-200 
+            ${
+              i === page
+                ? `bg-gray-600 border border-gray-500 text-gray-200 
             hover:bg-gray-500 hover:text-blue-700`
-              :
-              `bg-gray-800 border border-gray-700 text-gray-400 
+                : `bg-gray-800 border border-gray-700 text-gray-400 
             hover:bg-gray-700 hover:text-white`
             }
             `}
@@ -49,7 +50,17 @@ const Paginator = ({page, perPage, setPage, total}) => {
       let calc = parseInt(total / perPage) + 1;
       setPages(calc);
     }
-  }, [total])
+  }, [total]);
+
+  useEffect(() => {
+    let initial = (page - 1) * perPage + 1;
+    setInitialItem(initial);
+    let final = page * perPage;
+    if (final > total) {
+      final = total;
+    }
+    setFinalItem(final);
+  }, [page]);
 
   if (pages === 0) {
     return null;
@@ -57,8 +68,23 @@ const Paginator = ({page, perPage, setPage, total}) => {
 
   return (
     <>
-      <nav className="mx-auto pt-6">
-        <ul className="inline-flex -space-x-px text-md">
+      <nav className="mx-auto pt-6 flex flex-col">
+        <span className="text-gray-400 -space-x-px text-md mb-4 mx-auto">
+          Mostrando{" "}
+          <span className="font-semibold text-gray-900 dark:text-white">
+            {initialItem}
+          </span>{" "}
+          a{" "}
+          <span className="font-semibold text-gray-900 dark:text-white">
+            {finalItem}
+          </span>{" "}
+          de{" "}
+          <span className="font-semibold text-gray-900 dark:text-white">
+            {total}
+          </span>{" "}
+          Registros
+        </span>
+        <ul className="inline-flex -space-x-px text-md mx-auto">
           <li>
             <a
               href="#"

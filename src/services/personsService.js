@@ -31,7 +31,7 @@ const getPersonsCount = async () => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 const getPersonById = async (id) => {
   try {
@@ -63,7 +63,7 @@ const updatePerson = async (id, data) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 const deletePerson = async (id) => {
   try {
@@ -81,4 +81,10 @@ const deletePerson = async (id) => {
   }
 };
 
-export { getPersons, getPersonsCount, getPersonById, updatePerson, deletePerson };
+export {
+  getPersons,
+  getPersonsCount,
+  getPersonById,
+  updatePerson,
+  deletePerson,
+};

@@ -24,7 +24,7 @@ const PersonsDetailView = () => {
     e.preventDefault();
     const updateData = await updatePerson(id, data);
     console.log(updateData);
-  }
+  };
 
   useEffect(() => {
     getData();
@@ -34,7 +34,13 @@ const PersonsDetailView = () => {
     return <p>Cargando contenido...</p>;
   }
 
-  return <PersonsForm person={data} handleChange={handleChange} handleSubmit={handleSubmit}/>;
+  return (
+    <PersonsForm
+      person={data}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+    />
+  );
 };
 
 export default PersonsDetailView;

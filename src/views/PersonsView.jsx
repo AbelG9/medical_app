@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import PersonsTable from "../components/PersonsTable";
 import Swal from "sweetalert2";
-import { getPersons, getPersonsCount, deletePerson } from "../services/personsService";
+import {
+  getPersons,
+  getPersonsCount,
+  deletePerson,
+} from "../services/personsService";
 import CardView from "../components/CardView";
 import Paginator from "../components/Paginator";
 
@@ -18,9 +22,8 @@ const PersonsView = () => {
 
   const getDataCount = async () => {
     const dataCount = await getPersonsCount();
-    console.log("dataCount: ", dataCount);
     setTotal(dataCount);
-  }
+  };
 
   const handleEliminar = async (id) => {
     Swal.fire({
@@ -53,14 +56,19 @@ const PersonsView = () => {
     getData();
   }, [page]);
 
-  if(data === null){
-    return <p>Cargando contenido...</p>
+  if (data === null) {
+    return <p>Cargando contenido...</p>;
   }
 
   return (
     <CardView>
       <PersonsTable persons={data} handleEliminar={handleEliminar} />
-      <Paginator page={page} setPage={setPage} perPage={perPage} total={total}/>
+      <Paginator
+        page={page}
+        setPage={setPage}
+        perPage={perPage}
+        total={total}
+      />
     </CardView>
   );
 };

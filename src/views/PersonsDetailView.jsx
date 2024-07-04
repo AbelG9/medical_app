@@ -1,5 +1,5 @@
 import PersonsForm from "../components/PersonsForm";
-import { getPersonById } from "../services/personsService";
+import { getPersonById, updatePerson } from "../services/personsService";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -12,15 +12,29 @@ const PersonsDetailView = () => {
     setData(getData);
   };
 
+  const handleChange = (e) => {
+    const newData = {
+      ...data,
+      [e.target.name]: e.target.value,
+    };
+    setData(newData);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const updateData = await updatePerson(id, data);
+    console.log(updateData);
+  }
+
   useEffect(() => {
     getData();
   }, []);
 
-  if(data === null){
-    return <p>Cargando contenido...</p>
+  if (data === null) {
+    return <p>Cargando contenido...</p>;
   }
 
-  return <PersonsForm person={data} />;
+  return <PersonsForm person={data} handleChange={handleChange} handleSubmit={handleSubmit}/>;
 };
 
 export default PersonsDetailView;

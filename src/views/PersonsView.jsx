@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PersonsTable from "../components/PersonsTable";
 import Swal from "sweetalert2";
-import { getPersons, getPersonsCount, deletePersons } from "../services/personsService";
+import { getPersons, getPersonsCount, deletePerson } from "../services/personsService";
 import CardView from "../components/CardView";
 import Paginator from "../components/Paginator";
 
@@ -31,7 +31,7 @@ const PersonsView = () => {
       cancelButtonText: "No, no deseo eliminarlo",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const response = await deletePersons(id);
+        const response = await deletePerson(id);
         if (response) {
           Swal.fire(
             "Se ha eliminado el paciente correctamente!",

@@ -49,7 +49,23 @@ const getPersonById = async (id) => {
   }
 };
 
-const deletePersons = async (id) => {
+const updatePerson = async (id, data) => {
+  try {
+    const url = `${URL}/persons/${id}`;
+    const options = {
+      method: "put",
+      data: data,
+    };
+    const response = await axios({ url, ...options });
+    if (response.statusText === "OK") {
+      return response.data;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
+const deletePerson = async (id) => {
   try {
     const url = `${URL}/persons/${id}`;
     const options = {
@@ -65,4 +81,4 @@ const deletePersons = async (id) => {
   }
 };
 
-export { getPersons, getPersonsCount, getPersonById, deletePersons };
+export { getPersons, getPersonsCount, getPersonById, updatePerson, deletePerson };

@@ -47,10 +47,15 @@ const Paginator = ({ page, perPage, setPage, total }) => {
 
   useEffect(() => {
     if (total && total > 0) {
-      let calc = parseInt(total / perPage) + 1;
+      let calc = 0;
+      if (total % perPage === 0) {
+        calc = parseInt(total / perPage);
+      } else {
+        calc = parseInt(total / perPage) + 1;
+      }
       setPages(calc);
     }
-  }, [total]);
+  }, [page, total]);
 
   useEffect(() => {
     let initial = (page - 1) * perPage + 1;

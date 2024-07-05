@@ -41,20 +41,21 @@ const PersonsView = () => {
             "",
             "success"
           );
+          setTotal(null);
         }
       } else if (result.isDenied) {
         Swal.fire("No se ha eliminado nada!", "", "info");
       }
-      getData();
     });
   };
 
   useEffect(() => {
-    if (!total) {
+    if (total === null) {
       getDataCount();
+      setPage(1);
     }
     getData();
-  }, [page]);
+  }, [page, total]);
 
   if (data === null) {
     return <p>Cargando contenido...</p>;

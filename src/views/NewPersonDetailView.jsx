@@ -1,6 +1,8 @@
 import PersonsForm from "../components/PersonsForm";
 import { useState } from "react";
 import { saveNewPerson } from "../services/personsService";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const NewPersonDetailView = () => {
   const newPerson = {
@@ -10,6 +12,7 @@ const NewPersonDetailView = () => {
     gender: "",
   };
   const [data, setData] = useState(newPerson);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const newData = {
@@ -21,8 +24,27 @@ const NewPersonDetailView = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const saveData = await saveNewPerson(data);
-    console.log(saveData);
+    Swal.fire({
+        title: "Desea guardar los datos de paciente?",
+        text: "Verifique los datos!",
+        confirmButtonText: "Si, deseo guardarlos",
+        showCancelButton: true,
+        cancelButtonText: "No, no deseo guardarlos",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const response = await saveNewPerson(data);
+          if (response) {
+            Swal.fire(
+              "Se ha guardado los datos de paciente correctamente!",
+              "",
+              "success"
+            );
+            navigate("/persons");
+          }
+        } else if (result.isDenied) {
+          Swal.fire("No se ha guardado nada!", "", "info");
+        }
+      });
   };
 
   return (

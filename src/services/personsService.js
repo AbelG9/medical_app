@@ -57,7 +57,7 @@ const saveNewPerson = async (data) => {
       data: data,
     };
     const response = await axios({ url, ...options });
-    if (response.statusText === "OK") {
+    if (response.statusText === "Created") {
       return response.data;
     }
   } catch (error) {

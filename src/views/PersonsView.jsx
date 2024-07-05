@@ -25,7 +25,7 @@ const PersonsView = () => {
     setTotal(dataCount);
   };
 
-  const handleEliminar = async (id) => {
+  const handleDelete = async (id) => {
     Swal.fire({
       title: "Desea eliminar el paciente?",
       text: "Esta acción es irreversible 🙀!",
@@ -62,7 +62,7 @@ const PersonsView = () => {
 
   return (
     <CardView>
-      <PersonsTable persons={data} handleEliminar={handleEliminar} />
+      <PersonsTable persons={data} handleDelete={handleDelete} />
       <Paginator
         page={page}
         setPage={setPage}

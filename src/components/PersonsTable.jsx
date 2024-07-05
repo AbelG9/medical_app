@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 
-const PersonsTable = ({ persons, handleEliminar }) => {
+const PersonsTable = ({ persons, handleDelete }) => {
   return (
     <>
       <div className="flex flex-col text-center w-full mb-10">
@@ -53,7 +53,7 @@ const PersonsTable = ({ persons, handleEliminar }) => {
                       </Link>
                       <button
                         className="text-white bg-red-500 border border-red-800 rounded px-2 py-1 ms-2"
-                        onClick={() => handleEliminar(id)}
+                        onClick={() => handleDelete(id)}
                       >
                         <FaTrashAlt />
                       </button>

@@ -12,6 +12,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<PersonsView />} />
+          <Route path="/persons" element={<PersonsView />} />
           <Route path="/persons/:id" element={<PersonsDetailView />}></Route>
           <Route path="/persons/new" element={<NewPersonDetailView />}></Route>
         </Routes>

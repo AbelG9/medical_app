@@ -7,6 +7,9 @@ import {
   MenuItems,
   DisclosureButton,
   DisclosurePanel,
+  Popover,
+  PopoverButton,
+  PopoverPanel,
 } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { FaXmark, FaBars } from "react-icons/fa6";
@@ -34,12 +37,23 @@ const Navbar = () => {
                   >
                     Inicio
                   </Link>
-                  <Link
-                    to="/"
-                    className="hover:rounded-md px-3 py-2 text-sm hover:bg-gray-700 hover:text-blue-600"
-                  >
-                    Pacientes
-                  </Link>
+                  <Popover className="hover:rounded-md px-3 py-2 text-sm hover:bg-gray-700 hover:text-blue-600">
+                    <PopoverButton>Pacientes</PopoverButton>
+                    <PopoverPanel anchor="bottom" className="flex flex-col ml-8">
+                      <a
+                        className="bg-gray-800 mt-4 py-2 pl-2 rounded w-32 mr-4 text-sm hover:bg-gray-700 hover:text-blue-600"
+                        href="/persons"
+                      >
+                        Ver todos
+                      </a>
+                      <a
+                        className="bg-gray-800 mt-1 py-2 pl-2 rounded w-32 mr-4 text-sm hover:bg-gray-700 hover:text-blue-600"
+                        href="/persons/new"
+                      >
+                        Nuevo paciente
+                      </a>
+                    </PopoverPanel>
+                  </Popover>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center px-2">

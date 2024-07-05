@@ -49,6 +49,22 @@ const getPersonById = async (id) => {
   }
 };
 
+const saveNewPerson = async (data) => {
+  try {
+    const url = `${URL}/persons`;
+    const options = {
+      method: "post",
+      data: data,
+    };
+    const response = await axios({ url, ...options });
+    if (response.statusText === "OK") {
+      return response.data;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
 const updatePerson = async (id, data) => {
   try {
     const url = `${URL}/persons/${id}`;
@@ -85,6 +101,7 @@ export {
   getPersons,
   getPersonsCount,
   getPersonById,
+  saveNewPerson,
   updatePerson,
   deletePerson,
 };

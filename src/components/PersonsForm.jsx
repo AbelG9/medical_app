@@ -1,13 +1,13 @@
 import CardView from "../components/CardView";
 
-const PersonsForm = ({ person, handleChange, handleSubmit }) => {
+const PersonsForm = ({ person, handleChange, handleSubmit, title }) => {
   const { id, name, lastname, email, gender } = person;
 
   return (
     <CardView>
       <h2 className="text-xl mx-8 font-bold title-font">DATOS DE PACIENTE</h2>
       <p className="text-md text-gray-500 mt-3 mb-5 mx-8">
-        Editar datos de paciente
+        {title}
       </p>
       <form onSubmit={handleSubmit} className="mx-3 sm:mx-8">
         <div className="relative mb-4">

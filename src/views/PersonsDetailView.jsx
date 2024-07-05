@@ -39,6 +39,7 @@ const PersonsDetailView = () => {
       person={data}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
+      title={"Editar datos de paciente"}
     />
   );
 };

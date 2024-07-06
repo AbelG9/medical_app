@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext";
+import { closeSession } from "../functions/authFunctions";
 import {
   Disclosure,
   Menu,
@@ -12,9 +15,24 @@ import {
 } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { FaXmark, FaBars } from "react-icons/fa6";
+import firebaseErrorsInSpanish from "../utils/firebaseErrorMessages";
+import { toast } from "react-toastify";
+import { Navigate } from "react-router-dom";
 
 const Navbar = () => {
-  const user = null;
+  const { user } = useContext(AuthContext);
+
+  const notify = (msg, callback = {}) => toast(msg, callback);
+
+  const handleLogout = async () => {
+    try {
+      await closeSession();
+      notify("Cerro sesión correctamente", { type:"success" })
+      return <Navigate to="/login" />
+    } catch (error) {
+      notify(firebaseErrorsInSpanish[error.code], { type: "error" });
+    }
+  }
 
   return (
     <Disclosure as="nav" className="bg-sky-900">
@@ -131,7 +149,7 @@ const Navbar = () => {
                     <MenuItem>
                       <button
                         className="bg-gray-800 mt-4 py-4 rounded w-32 mr-4 font-semibold hover:bg-gray-700 hover:text-blue-600"
-                        onClick={() => console.log("logout")}
+                        onClick={() => handleLogout()}
                       >
                         Cerrar sesión
                       </button>

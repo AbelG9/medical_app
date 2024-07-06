@@ -26,26 +26,26 @@ const NewPersonView = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     Swal.fire({
-        title: "Desea guardar los datos de el paciente?",
-        text: "Verifique los datos!",
-        confirmButtonText: "Si, deseo guardarlos",
-        showCancelButton: true,
-        cancelButtonText: "No, no deseo guardarlos",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          const response = await saveNewRecord(entityName, data);
-          if (response) {
-            Swal.fire(
-              "Se ha guardado los datos de el paciente correctamente!",
-              "",
-              "success"
-            );
-            navigate("/persons");
-          }
-        } else if (result.isDenied) {
-          Swal.fire("No se ha guardado nada!", "", "info");
+      title: "Desea guardar los datos de el paciente?",
+      text: "Verifique los datos!",
+      confirmButtonText: "Si, deseo guardarlos",
+      showCancelButton: true,
+      cancelButtonText: "No, no deseo guardarlos",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const response = await saveNewRecord(entityName, data);
+        if (response) {
+          Swal.fire(
+            "Se ha guardado los datos de el paciente correctamente!",
+            "",
+            "success"
+          );
+          navigate("/persons");
         }
-      });
+      } else if (result.isDenied) {
+        Swal.fire("No se ha guardado nada!", "", "info");
+      }
+    });
   };
 
   return (

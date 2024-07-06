@@ -104,6 +104,28 @@ const deleteRecord = async (entityName, id, useAltURL = false) => {
   }
 };
 
+const findRecord = async (entityName, useAltURL = false, title, value ) => {
+  const mainURL = useAltURL ? ALT_URL : URL;
+
+  let url = `${mainURL}/${entityName}`;
+  let params = new URLSearchParams(url.search);
+  params.append(title, value);
+
+  try {
+    const response = await fetch(
+      url, {
+        method: 'GET',
+        headers: {'content-type':'application/json'},
+      }
+    );
+    const datos = await response.json();
+    return datos;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 export {
   getLimitedRecords,
   getRecordsCount,
@@ -111,4 +133,5 @@ export {
   saveNewRecord,
   updateRecord,
   deleteRecord,
+  findRecord
 };

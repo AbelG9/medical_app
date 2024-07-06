@@ -61,17 +61,17 @@ const Navbar = () => {
                     <PopoverButton>Especialidades</PopoverButton>
                     <PopoverPanel
                       anchor="bottom"
-                      className="flex flex-col ml-8"
+                      className="flex flex-col ml-6"
                     >
                       <Link
                         to="/specialties"
-                        className="bg-gray-800 mt-3 py-2 pl-2 rounded w-32 mr-4 text-sm hover:bg-gray-500 hover:text-blue-950 hover:font-semibold"
+                        className="bg-gray-800 mt-3 py-2 pl-2 rounded w-36 mr-4 text-sm hover:bg-gray-500 hover:text-blue-950 hover:font-semibold"
                       >
                         <button>Ver todas</button>
                       </Link>
                       <Link
                         to="/specialties/new"
-                        className="bg-gray-800 mt-1 py-2 pl-2 rounded w-32 mr-4 text-sm hover:bg-gray-500 hover:text-blue-950 hover:font-semibold"
+                        className="bg-gray-800 mt-1 py-2 pl-2 rounded w-36 mr-4 text-sm hover:bg-gray-500 hover:text-blue-950 hover:font-semibold"
                       >
                         <button>Nueva especialidad</button>
                       </Link>

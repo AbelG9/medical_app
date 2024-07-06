@@ -39,19 +39,22 @@ const Navbar = () => {
                   </Link>
                   <Popover className="hover:rounded-md px-3 py-2 text-sm hover:bg-gray-700 hover:text-blue-600">
                     <PopoverButton>Pacientes</PopoverButton>
-                    <PopoverPanel anchor="bottom" className="flex flex-col ml-8">
-                      <a
-                        className="bg-gray-800 mt-4 py-2 pl-2 rounded w-32 mr-4 text-sm hover:bg-gray-700 hover:text-blue-600"
-                        href="/persons"
+                    <PopoverPanel
+                      anchor="bottom"
+                      className="flex flex-col ml-8"
+                    >
+                      <Link
+                        to="/persons"
+                        className="bg-gray-800 mt-3 py-2 pl-2 rounded w-32 mr-4 text-sm hover:bg-gray-700 hover:text-blue-600"
                       >
-                        Ver todos
-                      </a>
-                      <a
+                        <button>Ver todos</button>
+                      </Link>
+                      <Link
+                        to="/persons/new"
                         className="bg-gray-800 mt-1 py-2 pl-2 rounded w-32 mr-4 text-sm hover:bg-gray-700 hover:text-blue-600"
-                        href="/persons/new"
                       >
-                        Nuevo paciente
-                      </a>
+                        <button>Nuevo paciente</button>
+                      </Link>
                     </PopoverPanel>
                   </Popover>
                 </div>

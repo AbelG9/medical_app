@@ -1,10 +1,11 @@
 import PersonsForm from "../components/PersonsForm";
 import { useState } from "react";
-import { saveNewPerson } from "../services/personsService";
+import { saveNewRecord } from "../services/genericService";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const NewPersonDetailView = () => {
+  const entityName = "persons";
   const newPerson = {
     name: "",
     lastname: "",
@@ -32,7 +33,7 @@ const NewPersonDetailView = () => {
         cancelButtonText: "No, no deseo guardarlos",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const response = await saveNewPerson(data);
+          const response = await saveNewRecord(entityName, data);
           if (response) {
             Swal.fire(
               "Se ha guardado los datos de paciente correctamente!",

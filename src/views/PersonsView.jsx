@@ -2,26 +2,27 @@ import { useState, useEffect } from "react";
 import PersonsTable from "../components/PersonsTable";
 import Swal from "sweetalert2";
 import {
-  getPersons,
-  getPersonsCount,
-  deletePerson,
-} from "../services/personsService";
+  getLimitedRecords,
+  getRecordsCount,
+  deleteRecord,
+} from "../services/genericService";
 import CardView from "../components/CardView";
 import Paginator from "../components/Paginator";
 
 const PersonsView = () => {
+  const entityName = "persons";
   const [data, setData] = useState(null);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
   const [total, setTotal] = useState(null);
 
   const getData = async () => {
-    const getData = await getPersons(page, perPage);
+    const getData = await getLimitedRecords(entityName, page, perPage);
     setData(getData);
   };
 
   const getDataCount = async () => {
-    const dataCount = await getPersonsCount();
+    const dataCount = await getRecordsCount(entityName);
     setTotal(dataCount);
   };
 
@@ -34,7 +35,7 @@ const PersonsView = () => {
       cancelButtonText: "No, no deseo eliminarlo",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const response = await deletePerson(id);
+        const response = await deleteRecord(entityName, id);
         if (response) {
           Swal.fire(
             "Se ha eliminado el paciente correctamente!",

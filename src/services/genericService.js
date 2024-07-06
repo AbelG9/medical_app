@@ -1,9 +1,9 @@
 import axios from "axios";
 const URL = import.meta.env.VITE_ENDPOINT_BASE;
 
-const getPersons = async (page, perPage) => {
+const getLimitedRecords = async (entityName, page, perPage) => {
   try {
-    const url = `${URL}/persons?page=${page}&limit=${perPage}`;
+    const url = `${URL}/${entityName}?page=${page}&limit=${perPage}`;
     const options = {
       method: "get",
       data: null,
@@ -17,9 +17,9 @@ const getPersons = async (page, perPage) => {
   }
 };
 
-const getPersonsCount = async () => {
+const getRecordsCount = async (entityName) => {
   try {
-    const url = `${URL}/persons`;
+    const url = `${URL}/${entityName}`;
     const options = {
       method: "get",
       data: null,
@@ -33,9 +33,9 @@ const getPersonsCount = async () => {
   }
 };
 
-const getPersonById = async (id) => {
+const getRecordById = async (entityName, id) => {
   try {
-    const url = `${URL}/persons/${id}`;
+    const url = `${URL}/${entityName}/${id}`;
     const options = {
       method: "get",
       data: null,
@@ -49,9 +49,9 @@ const getPersonById = async (id) => {
   }
 };
 
-const saveNewPerson = async (data) => {
+const saveNewRecord = async (entityName, data) => {
   try {
-    const url = `${URL}/persons`;
+    const url = `${URL}/${entityName}`;
     const options = {
       method: "post",
       data: data,
@@ -65,9 +65,9 @@ const saveNewPerson = async (data) => {
   }
 }
 
-const updatePerson = async (id, data) => {
+const updateRecord = async (entityName, id, data) => {
   try {
-    const url = `${URL}/persons/${id}`;
+    const url = `${URL}/${entityName}/${id}`;
     const options = {
       method: "put",
       data: data,
@@ -81,9 +81,9 @@ const updatePerson = async (id, data) => {
   }
 };
 
-const deletePerson = async (id) => {
+const deleteRecord = async (entityName, id) => {
   try {
-    const url = `${URL}/persons/${id}`;
+    const url = `${URL}/${entityName}/${id}`;
     const options = {
       method: "delete",
       data: null,
@@ -98,10 +98,10 @@ const deletePerson = async (id) => {
 };
 
 export {
-  getPersons,
-  getPersonsCount,
-  getPersonById,
-  saveNewPerson,
-  updatePerson,
-  deletePerson,
+  getLimitedRecords,
+  getRecordsCount,
+  getRecordById,
+  saveNewRecord,
+  updateRecord,
+  deleteRecord,
 };

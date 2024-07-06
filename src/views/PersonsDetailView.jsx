@@ -1,17 +1,18 @@
 import PersonsForm from "../components/PersonsForm";
-import { getPersonById, updatePerson } from "../services/personsService";
+import { getRecordById, updateRecord } from "../services/genericService";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const PersonsDetailView = () => {
+  const entityName = "persons";
   const [data, setData] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
   const getData = async () => {
-    const getData = await getPersonById(id);
+    const getData = await getRecordById(entityName, id);
     setData(getData);
   };
 
@@ -33,7 +34,7 @@ const PersonsDetailView = () => {
       cancelButtonText: "No, no deseo editarlos",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const response = await updatePerson(id, data);
+        const response = await updateRecord(entityName, id, data);
         if (response) {
           Swal.fire(
             "Se ha guardado los datos de paciente correctamente!",

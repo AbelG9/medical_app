@@ -1,7 +1,6 @@
 import {
   Disclosure,
   Menu,
-  Transition,
   MenuButton,
   MenuItem,
   MenuItems,
@@ -74,6 +73,26 @@ const Navbar = () => {
                         className="bg-gray-800 mt-1 py-2 pl-2 rounded w-36 mr-4 text-sm hover:bg-gray-500 hover:text-blue-950 hover:font-semibold"
                       >
                         <button>Nueva especialidad</button>
+                      </Link>
+                    </PopoverPanel>
+                  </Popover>
+                  <Popover className="hover:rounded px-3 py-2 text-sm hover:bg-gray-600 hover:text-blue-950 hover:font-semibold">
+                    <PopoverButton>Especialistas</PopoverButton>
+                    <PopoverPanel
+                      anchor="bottom"
+                      className="flex flex-col ml-8"
+                    >
+                      <Link
+                        to="/specialists"
+                        className="bg-gray-800 mt-3 py-2 pl-2 rounded w-36 mr-4 text-sm hover:bg-gray-500 hover:text-blue-950 hover:font-semibold"
+                      >
+                        <button>Ver todos</button>
+                      </Link>
+                      <Link
+                        to="/specialists/new"
+                        className="bg-gray-800 mt-1 py-2 pl-2 rounded w-36 mr-4 text-sm hover:bg-gray-500 hover:text-blue-950 hover:font-semibold"
+                      >
+                        <button>Nuev@ especialista</button>
                       </Link>
                     </PopoverPanel>
                   </Popover>
@@ -161,6 +180,29 @@ const Navbar = () => {
                       className="mt-1 py-2 pl-2 rounded w-32 mr-4 text-sm"
                     >
                       <button>Nueva especialidad</button>
+                    </Link>
+                  </div>
+                </DisclosurePanel>
+              </Disclosure>
+            </div>
+            <div className="bg-gray-900 my-1 px-2 pb-3 pt-2 hover:bg-gray-600 hover:text-blue-950 hover:font-semibold">
+              <Disclosure>
+                <DisclosureButton className="py-2">Especialistas</DisclosureButton>
+                <DisclosurePanel className="text-gray-500">
+                  <div className="bg-gray-800 my-1 px-2 pb-3 pt-2 hover:bg-gray-500 hover:text-blue-950 hover:font-semibold">
+                    <Link
+                      to="/specialists"
+                      className="mt-3 py-2 pl-2 rounded w-32 mr-4 text-sm"
+                    >
+                      <button>Ver tod@s</button>
+                    </Link>
+                  </div>
+                  <div className="bg-gray-800 my-1 px-2 pb-3 pt-2 hover:bg-gray-500 hover:text-blue-950 hover:font-semibold">
+                    <Link
+                      to="/specialists/new"
+                      className="mt-1 py-2 pl-2 rounded w-32 mr-4 text-sm"
+                    >
+                      <button>Nuev@ especialista</button>
                     </Link>
                   </div>
                 </DisclosurePanel>

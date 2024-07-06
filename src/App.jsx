@@ -5,6 +5,9 @@ import NewPersonView from "./views/NewPersonView";
 import SpecialtiesView from "./views/SpecialtiesView";
 import SpecialtiesDetailView from "./views/SpecialtiesDetailView";
 import NewSpecialtyView from "./views/NewSpecialtyView";
+import SpecialistsView from "./views/SpecialistsView";
+import SpecialistsDetailView from "./views/SpecialistsDetailView";
+import NewSpecialistView from "./views/NewSpecialistView";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -21,6 +24,9 @@ function App() {
           <Route path="/specialties" element={<SpecialtiesView />}></Route>
           <Route path="/specialties/:id" element={<SpecialtiesDetailView />}></Route>
           <Route path="/specialties/new" element={<NewSpecialtyView />}></Route>
+          <Route path="/specialists" element={<SpecialistsView />}></Route>
+          <Route path="/specialists/:id" element={<SpecialistsDetailView />}></Route>
+          <Route path="/specialists/new" element={<NewSpecialistView />}></Route>
         </Routes>
       </Router>
     </>

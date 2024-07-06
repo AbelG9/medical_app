@@ -4,7 +4,7 @@ import { saveNewRecord } from "../services/genericService";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const NewPersonDetailView = () => {
+const NewPersonView = () => {
   const entityName = "persons";
   const newPerson = {
     name: "",
@@ -26,7 +26,7 @@ const NewPersonDetailView = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     Swal.fire({
-        title: "Desea guardar los datos de paciente?",
+        title: "Desea guardar los datos de el paciente?",
         text: "Verifique los datos!",
         confirmButtonText: "Si, deseo guardarlos",
         showCancelButton: true,
@@ -36,7 +36,7 @@ const NewPersonDetailView = () => {
           const response = await saveNewRecord(entityName, data);
           if (response) {
             Swal.fire(
-              "Se ha guardado los datos de paciente correctamente!",
+              "Se ha guardado los datos de el paciente correctamente!",
               "",
               "success"
             );
@@ -58,4 +58,4 @@ const NewPersonDetailView = () => {
   );
 };
 
-export default NewPersonDetailView;
+export default NewPersonView;

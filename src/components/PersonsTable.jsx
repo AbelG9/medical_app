@@ -34,7 +34,7 @@ const PersonsTable = ({ persons, handleDelete }) => {
               <th className="px-4 py-3 title-font tracking-wider font-medium text-sm">
                 Sexo
               </th>
-              <th className="px-4 py-3 title-font tracking-wider font-medium text-sm rounded-tr rounded-br">
+              <th className="px-4 py-3 title-font tracking-wider font-medium text-sm">
                 Acciones
               </th>
             </tr>

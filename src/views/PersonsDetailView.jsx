@@ -27,8 +27,8 @@ const PersonsDetailView = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     Swal.fire({
-      title: "Desea editar los datos de paciente?",
-      text: "Esta acción es irreversible!",
+      title: "Desea editar los datos de el paciente?",
+      text: "Verifique los datos!",
       confirmButtonText: "Si, deseo editarlos",
       showCancelButton: true,
       cancelButtonText: "No, no deseo editarlos",
@@ -37,7 +37,7 @@ const PersonsDetailView = () => {
         const response = await updateRecord(entityName, id, data);
         if (response) {
           Swal.fire(
-            "Se ha guardado los datos de paciente correctamente!",
+            "Se ha guardado los datos de el paciente correctamente!",
             "",
             "success"
           );

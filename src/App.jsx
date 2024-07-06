@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PersonsView from "./views/PersonsView";
 import PersonsDetailView from "./views/PersonsDetailView";
-import NewPersonDetailView from "./views/NewPersonDetailView";
+import NewPersonView from "./views/NewPersonView";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
           <Route path="/" element={<PersonsView />} />
           <Route path="/persons" element={<PersonsView />} />
           <Route path="/persons/:id" element={<PersonsDetailView />}></Route>
-          <Route path="/persons/new" element={<NewPersonDetailView />}></Route>
+          <Route path="/persons/new" element={<NewPersonView />}></Route>
         </Routes>
       </Router>
     </>

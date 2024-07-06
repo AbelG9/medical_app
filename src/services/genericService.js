@@ -1,9 +1,11 @@
 import axios from "axios";
 const URL = import.meta.env.VITE_ENDPOINT_BASE;
+const ALT_URL = import.meta.env.VITE_ENDPOINT_ALT_BASE;
 
-const getLimitedRecords = async (entityName, page, perPage) => {
+const getLimitedRecords = async (entityName, page, perPage, useAltURL = false) => {
+  const mainURL = useAltURL ? ALT_URL : URL;
   try {
-    const url = `${URL}/${entityName}?page=${page}&limit=${perPage}`;
+    const url = `${mainURL}/${entityName}?page=${page}&limit=${perPage}`;
     const options = {
       method: "get",
       data: null,
@@ -17,9 +19,10 @@ const getLimitedRecords = async (entityName, page, perPage) => {
   }
 };
 
-const getRecordsCount = async (entityName) => {
+const getRecordsCount = async (entityName, useAltURL = false) => {
+  const mainURL = useAltURL ? ALT_URL : URL;
   try {
-    const url = `${URL}/${entityName}`;
+    const url = `${mainURL}/${entityName}`;
     const options = {
       method: "get",
       data: null,
@@ -33,9 +36,10 @@ const getRecordsCount = async (entityName) => {
   }
 };
 
-const getRecordById = async (entityName, id) => {
+const getRecordById = async (entityName, id, useAltURL = false) => {
+  const mainURL = useAltURL ? ALT_URL : URL;
   try {
-    const url = `${URL}/${entityName}/${id}`;
+    const url = `${mainURL}/${entityName}/${id}`;
     const options = {
       method: "get",
       data: null,
@@ -49,9 +53,10 @@ const getRecordById = async (entityName, id) => {
   }
 };
 
-const saveNewRecord = async (entityName, data) => {
+const saveNewRecord = async (entityName, data, useAltURL = false) => {
+  const mainURL = useAltURL ? ALT_URL : URL;
   try {
-    const url = `${URL}/${entityName}`;
+    const url = `${mainURL}/${entityName}`;
     const options = {
       method: "post",
       data: data,
@@ -65,9 +70,10 @@ const saveNewRecord = async (entityName, data) => {
   }
 }
 
-const updateRecord = async (entityName, id, data) => {
+const updateRecord = async (entityName, id, data, useAltURL = false) => {
+  const mainURL = useAltURL ? ALT_URL : URL;
   try {
-    const url = `${URL}/${entityName}/${id}`;
+    const url = `${mainURL}/${entityName}/${id}`;
     const options = {
       method: "put",
       data: data,
@@ -81,9 +87,10 @@ const updateRecord = async (entityName, id, data) => {
   }
 };
 
-const deleteRecord = async (entityName, id) => {
+const deleteRecord = async (entityName, id, useAltURL = false) => {
+  const mainURL = useAltURL ? ALT_URL : URL;
   try {
-    const url = `${URL}/${entityName}/${id}`;
+    const url = `${mainURL}/${entityName}/${id}`;
     const options = {
       method: "delete",
       data: null,

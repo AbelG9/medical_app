@@ -57,6 +57,26 @@ const Navbar = () => {
                       </Link>
                     </PopoverPanel>
                   </Popover>
+                  <Popover className="hover:rounded px-3 py-2 text-sm hover:bg-gray-600 hover:text-blue-950 hover:font-semibold">
+                    <PopoverButton>Especialidades</PopoverButton>
+                    <PopoverPanel
+                      anchor="bottom"
+                      className="flex flex-col ml-8"
+                    >
+                      <Link
+                        to="/specialties"
+                        className="bg-gray-800 mt-3 py-2 pl-2 rounded w-32 mr-4 text-sm hover:bg-gray-500 hover:text-blue-950 hover:font-semibold"
+                      >
+                        <button>Ver todas</button>
+                      </Link>
+                      <Link
+                        to="/specialties/new"
+                        className="bg-gray-800 mt-1 py-2 pl-2 rounded w-32 mr-4 text-sm hover:bg-gray-500 hover:text-blue-950 hover:font-semibold"
+                      >
+                        <button>Nueva especialidad</button>
+                      </Link>
+                    </PopoverPanel>
+                  </Popover>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
@@ -118,6 +138,29 @@ const Navbar = () => {
                       className="mt-1 py-2 pl-2 rounded w-32 mr-4 text-sm"
                     >
                       <button>Nuevo paciente</button>
+                    </Link>
+                  </div>
+                </DisclosurePanel>
+              </Disclosure>
+            </div>
+            <div className="bg-gray-900 my-1 px-2 pb-3 pt-2 hover:bg-gray-600 hover:text-blue-950 hover:font-semibold">
+              <Disclosure>
+                <DisclosureButton className="py-2">Especialidades</DisclosureButton>
+                <DisclosurePanel className="text-gray-500">
+                  <div className="bg-gray-800 my-1 px-2 pb-3 pt-2 hover:bg-gray-500 hover:text-blue-950 hover:font-semibold">
+                    <Link
+                      to="/specialties"
+                      className="mt-3 py-2 pl-2 rounded w-32 mr-4 text-sm"
+                    >
+                      <button>Ver todas</button>
+                    </Link>
+                  </div>
+                  <div className="bg-gray-800 my-1 px-2 pb-3 pt-2 hover:bg-gray-500 hover:text-blue-950 hover:font-semibold">
+                    <Link
+                      to="/specialties/new"
+                      className="mt-1 py-2 pl-2 rounded w-32 mr-4 text-sm"
+                    >
+                      <button>Nueva especialidad</button>
                     </Link>
                   </div>
                 </DisclosurePanel>

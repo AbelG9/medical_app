@@ -29,7 +29,10 @@ const PersonsTable = ({ persons, handleDelete }) => {
                 Email
               </th>
               <th className="px-4 py-3 title-font tracking-wider font-medium text-sm">
-                Género
+                DNI
+              </th>
+              <th className="px-4 py-3 title-font tracking-wider font-medium text-sm">
+                Sexo
               </th>
               <th className="px-4 py-3 title-font tracking-wider font-medium text-sm rounded-tr rounded-br">
                 Acciones
@@ -38,13 +41,14 @@ const PersonsTable = ({ persons, handleDelete }) => {
           </thead>
           <tbody className="bg-gray-800 rounded-tr rounded-br">
             {persons
-              ? persons.map(({ id, name, lastname, email, gender }) => (
+              ? persons.map(({ id, name, lastname, email, num_document, sexName }) => (
                   <tr key={id} className="rounded-bl rounded-br">
                     <td className="px-4 py-3">{id}</td>
                     <td className="px-4 py-3 text-lg">{name}</td>
                     <td className="px-4 py-3 text-lg">{lastname}</td>
                     <td className="px-4 py-3 text-sm">{email}</td>
-                    <td className="px-4 py-3 capitalize text-sm">{gender}</td>
+                    <td className="px-4 py-3 text-sm">{num_document}</td>
+                    <td className="px-4 py-3 capitalize text-sm">{sexName == "male" ? "Masculino" : "Femenino"}</td>
                     <td className="px-auto py-3 flex flex-row">
                       <Link to={`/persons/${id}`}>
                         <button className="bg-orange-500 border border-orange-800 rounded px-2 py-1 ms-2">

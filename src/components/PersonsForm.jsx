@@ -1,7 +1,7 @@
 import CardView from "../components/CardView";
 
 const PersonsForm = ({ person, handleChange, handleSubmit, title }) => {
-  const { id, name, lastname, email, gender } = person;
+  const { id, name, lastname, email, num_document, sexName } = person;
 
   return (
     <CardView>
@@ -63,18 +63,30 @@ const PersonsForm = ({ person, handleChange, handleSubmit, title }) => {
             className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
         </div>
-        <div className="relative mb-8">
-          <label htmlFor="gender" className="leading-7 text-md">
-            Género
+        <div className="relative mb-4">
+          <label htmlFor="DNI" className="leading-7 text-md">
+            DNI
           </label>
           <input
-            value={gender}
+            value={num_document}
             onChange={handleChange}
-            type="text"
-            id="gender"
-            name="gender"
+            type="number"
+            id="num_document"
+            name="num_document"
             className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
+        </div>
+        <div className="relative mb-8">
+          <label htmlFor="sexName" className="leading-7 text-md">
+            Sexo
+          </label>
+          <select value={sexName}
+            onChange={handleChange} id="sexName"
+            name="sexName"
+            className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <option value="male">Masculino</option>
+            <option value="female">Femenino</option>
+          </select>
         </div>
 
         <button

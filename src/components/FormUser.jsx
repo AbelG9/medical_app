@@ -33,19 +33,19 @@ const FormUser = ({ handleLoginEmail, handleRegisterEmail }) => {
         <TabPanel>
           <div className="min-w-4/5 pl-3 pt-4 pr-2 mb-2 block">
             <div className="mb-2">
-              <label className="text-sm font-semibold mb-1 block">Email</label>
+              <label className="text-sm font-semibold mb-1 block text-white">Email</label>
               <input
-                className="border-2 p-1 h-12 w-full"
+                className="border-2 p-1 h-12 w-full text-black"
                 placeholder="Email Login"
                 ref={inputEmailLogIn}
               />
             </div>
             <div className="mb-2">
-              <label className="text-sm font-semibold mb-1 block">
+              <label className="text-sm font-semibold mb-1 block text-white">
                 Contraseña
               </label>
               <input
-                className="border-2 p-1 h-12 w-full"
+                className="border-2 p-1 h-12 w-full text-black"
                 type="password"
                 ref={inputPassLogIn}
               />
@@ -61,19 +61,19 @@ const FormUser = ({ handleLoginEmail, handleRegisterEmail }) => {
         <TabPanel>
           <div className="min-w-4/5 pl-3 pt-4 pr-2 mb-2 block">
             <div className="mb-2">
-              <label className="text-sm font-semibold mb-1 block">Email</label>
+              <label className="text-sm font-semibold mb-1 block text-white">Email</label>
               <input
-                className="border-2 p-1 h-12 w-full"
+                className="border-2 p-1 h-12 w-full text-black"
                 placeholder="Email Register"
                 ref={inputEmailRegister}
               />
             </div>
             <div className="mb-2">
-              <label className="text-sm font-semibold mb-1 block">
+              <label className="text-sm font-semibold mb-1 block text-white">
                 Contraseña
               </label>
               <input
-                className="border-2 p-1 h-12 w-full"
+                className="border-2 p-1 h-12 w-full text-black"
                 type="password"
                 ref={inputPassRegister}
               />

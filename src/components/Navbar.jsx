@@ -17,22 +17,24 @@ import { Link } from "react-router-dom";
 import { FaXmark, FaBars } from "react-icons/fa6";
 import firebaseErrorsInSpanish from "../utils/firebaseErrorMessages";
 import { toast } from "react-toastify";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const notify = (msg, callback = {}) => toast(msg, callback);
 
   const handleLogout = async () => {
     try {
       await closeSession();
-      notify("Cerro sesión correctamente", { type:"success" })
-      return <Navigate to="/login" />
+      notify(`Cerro sesión correctamente`, {
+        onClose: () => navigate("/login"),
+      });
     } catch (error) {
       notify(firebaseErrorsInSpanish[error.code], { type: "error" });
     }
-  }
+  };
 
   return (
     <Disclosure as="nav" className="bg-sky-900">
@@ -48,6 +50,14 @@ const Navbar = () => {
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
+                  {user?.displayName ? null : (
+                    <Link
+                      to="/login"
+                      className="hover:rounded px-3 py-2 text-sm hover:bg-gray-600 hover:text-blue-950 hover:font-semibold"
+                    >
+                      Login
+                    </Link>
+                  )}
                   <Link
                     to="/"
                     className="hover:rounded px-3 py-2 text-sm hover:bg-gray-600 hover:text-blue-950 hover:font-semibold"
@@ -188,7 +198,9 @@ const Navbar = () => {
             </div>
             <div className="bg-gray-900 my-1 px-2 pb-3 pt-2 hover:bg-gray-600 hover:text-blue-950 hover:font-semibold">
               <Disclosure>
-                <DisclosureButton className="py-2">Especialidades</DisclosureButton>
+                <DisclosureButton className="py-2">
+                  Especialidades
+                </DisclosureButton>
                 <DisclosurePanel className="text-gray-500">
                   <div className="bg-gray-800 my-1 px-2 pb-3 pt-2 hover:bg-gray-500 hover:text-blue-950 hover:font-semibold">
                     <Link
@@ -211,7 +223,9 @@ const Navbar = () => {
             </div>
             <div className="bg-gray-900 my-1 px-2 pb-3 pt-2 hover:bg-gray-600 hover:text-blue-950 hover:font-semibold">
               <Disclosure>
-                <DisclosureButton className="py-2">Especialistas</DisclosureButton>
+                <DisclosureButton className="py-2">
+                  Especialistas
+                </DisclosureButton>
                 <DisclosurePanel className="text-gray-500">
                   <div className="bg-gray-800 my-1 px-2 pb-3 pt-2 hover:bg-gray-500 hover:text-blue-950 hover:font-semibold">
                     <Link

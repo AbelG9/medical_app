@@ -8,6 +8,7 @@ import NewSpecialtyView from "./views/NewSpecialtyView";
 import SpecialistsView from "./views/SpecialistsView";
 import SpecialistsDetailView from "./views/SpecialistsDetailView";
 import NewSpecialistView from "./views/NewSpecialistView";
+import AppointmentsView from "./views/AppointmentsView";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/specialists" element={<SpecialistsView />}></Route>
           <Route path="/specialists/:id" element={<SpecialistsDetailView />}></Route>
           <Route path="/specialists/new" element={<NewSpecialistView />}></Route>
+          <Route path="/appointments" element={<AppointmentsView />}></Route>
         </Routes>
       </Router>
     </>

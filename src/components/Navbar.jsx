@@ -96,6 +96,12 @@ const Navbar = () => {
                       </Link>
                     </PopoverPanel>
                   </Popover>
+                  <Link
+                    to="/appointments"
+                    className="hover:rounded px-3 py-2 text-sm hover:bg-gray-600 hover:text-blue-950 hover:font-semibold"
+                  >
+                    Citas
+                  </Link>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
@@ -207,6 +213,9 @@ const Navbar = () => {
                   </div>
                 </DisclosurePanel>
               </Disclosure>
+            </div>
+            <div className="bg-gray-900 my-1 px-2 pb-3 pt-2 hover:bg-gray-600 hover:text-blue-950 hover:font-semibold">
+              <Link to="/appointments">Citas</Link>
             </div>
           </DisclosurePanel>
         </>

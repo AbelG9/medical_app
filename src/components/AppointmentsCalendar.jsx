@@ -5,6 +5,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { findRecord } from "../services/genericService";
 import Finder from "./Finder";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const AppointmentsCalendar = ({
   setShowModal,
@@ -23,14 +24,21 @@ const AppointmentsCalendar = ({
   const [renderOptions, setRenderOptions] = useState(false);
   const [renderOptionsPatients, setRenderOptionsPatients] = useState(false);
 
+  const [specialistId, setSpecialistId] = useState(0);
+  const [events, setEvents] = useState([]);
+
   const handleDateSelect = (selectInfo) => {
-    const newData = {
-      ...appointmentData,
-      start_timedate: selectInfo.startStr,
-      end_timedate: selectInfo.endStr,
-    };
-    setAppointmentData(newData);
-    setShowModal(true);
+    if (!appointmentData.doctor_id || !appointmentData.patient_id) {
+      Swal.fire("Complete los datos necesarios!", "", "error");
+    } else {
+      const newData = {
+        ...appointmentData,
+        start_timedate: selectInfo.startStr,
+        end_timedate: selectInfo.endStr,
+      };
+      setAppointmentData(newData);
+      setShowModal(true);
+    }
   };
 
   const searchText = async () => {
@@ -72,6 +80,23 @@ const AppointmentsCalendar = ({
     setTextValue(e.target.value);
   };
 
+  const searchAppointmentsBySpecialist = async () => {
+    const response = await findRecord(
+      "appointments",
+      true,
+      "doctor_id",
+      specialistId
+    );
+    let eventsResponse = [];
+    for (let i = 0; i < response.length; i++) {
+      eventsResponse.push({
+        title: response[i].patient_name + " " + response[i].patient_lastname,
+        start: response[i].start_timedate,
+      });
+    }
+    setEvents(eventsResponse);
+  };
+
   const handleChangeSearchPatients = (e) => {
     setTextValuePatients(e.target.value);
   };
@@ -87,6 +112,7 @@ const AppointmentsCalendar = ({
       doctor_lastname: optionLastName,
     };
     setAppointmentData(newData);
+    searchAppointmentsBySpecialist();
   };
 
   const selectPatient = (optionName, optionLastName, value) => {
@@ -152,7 +178,6 @@ const AppointmentsCalendar = ({
     return li;
   };
 
-  
   return (
     <>
       <Finder
@@ -178,10 +203,10 @@ const AppointmentsCalendar = ({
         }}
         initialView="timeGridWeek"
         weekends={true}
-        // events={events}
+        events={events}
         // eventContent={renderEventContent}
         selectable={true}
-        editable={true}
+        editable={false}
         // eventClick={handleEventClick}
         select={handleDateSelect}
         locale="es"

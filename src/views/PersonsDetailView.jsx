@@ -1,12 +1,12 @@
 import PersonsForm from "../components/PersonsForm";
-import { getRecordById, updateRecord } from "../services/genericService";
+import { getRecordById, updateRecord } from "../services/prismaGenericService";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const PersonsDetailView = () => {
-  const entityName = "persons";
+  const entityName = "patients";
   const [data, setData] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();

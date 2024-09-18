@@ -5,24 +5,24 @@ import {
   getLimitedRecords,
   getRecordsCount,
   deleteRecord,
-} from "../services/genericService";
+} from "../services/prismaGenericService";
 import CardView from "../components/CardView";
 import Paginator from "../components/Paginator";
 
 const PersonsView = () => {
-  const entityName = "persons";
+  const entityName = "patients";
   const [data, setData] = useState(null);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
   const [total, setTotal] = useState(null);
 
   const getData = async () => {
-    const getData = await getLimitedRecords(entityName, page, perPage);
+    const getData = await getLimitedRecords(entityName, page, perPage);  
     setData(getData);
   };
 
   const getDataCount = async () => {
-    const dataCount = await getRecordsCount(entityName);
+    const dataCount = await getRecordsCount(entityName);   
     setTotal(dataCount);
   };
 

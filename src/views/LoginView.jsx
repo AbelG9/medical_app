@@ -60,7 +60,7 @@ const LoginView = () => {
         className="flex items-center gap-3 bg-blue-600 rounded-full p-0.5 pr-4 transition-colors duration-300 hover:bg-google-button-blue-hover w-full md:w-1/4 mx-auto text-xl"
         onClick={handleLogin}
       >
-        <div class="flex items-center justify-center bg-white w-9 h-9 rounded-full">
+        <div className="flex items-center justify-center bg-white w-9 h-9 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

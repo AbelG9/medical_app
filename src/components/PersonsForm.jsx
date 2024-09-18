@@ -1,7 +1,7 @@
 import CardView from "../components/CardView";
 
 const PersonsForm = ({ person, handleChange, handleSubmit, title }) => {
-  const { id, name, lastname, email, num_document, sexName } = person;
+  const { id, name, lastname, email, numDocument, sexName } = person;
 
   return (
     <CardView>
@@ -68,11 +68,11 @@ const PersonsForm = ({ person, handleChange, handleSubmit, title }) => {
             DNI
           </label>
           <input
-            value={num_document}
+            value={numDocument}
             onChange={handleChange}
-            type="number"
-            id="num_document"
-            name="num_document"
+            type="text"
+            id="numDocument"
+            name="numDocument"
             className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
         </div>
@@ -84,8 +84,10 @@ const PersonsForm = ({ person, handleChange, handleSubmit, title }) => {
             onChange={handleChange} id="sexName"
             name="sexName"
             className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            <option value="male">Masculino</option>
-            <option value="female">Femenino</option>
+            <option value="">Seleccione..</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
           </select>
         </div>
         <button

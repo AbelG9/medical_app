@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 
 const PersonsTable = ({ persons, handleDelete }) => {
+  
   return (
     <>
       <div className="flex flex-col text-center w-full mb-10">
@@ -41,13 +42,13 @@ const PersonsTable = ({ persons, handleDelete }) => {
           </thead>
           <tbody className="bg-gray-800 rounded-tr rounded-br">
             {persons
-              ? persons.map(({ id, name, lastname, email, num_document, sexName }) => (
+              ? persons.map(({ id, name, lastname, email, numDocument, sexName }) => (
                   <tr key={id} className="rounded-bl rounded-br">
                     <td className="px-4 py-3">{id}</td>
                     <td className="px-4 py-3 text-lg">{name}</td>
                     <td className="px-4 py-3 text-lg">{lastname}</td>
                     <td className="px-4 py-3 text-sm">{email}</td>
-                    <td className="px-4 py-3 text-sm">{num_document}</td>
+                    <td className="px-4 py-3 text-sm">{numDocument}</td>
                     <td className="px-4 py-3 capitalize text-sm">{sexName == "male" ? "Masculino" : "Femenino"}</td>
                     <td className="px-auto py-3 flex flex-row">
                       <Link to={`/persons/${id}`}>

@@ -1,16 +1,17 @@
 import PersonsForm from "../components/PersonsForm";
 import { useState } from "react";
-import { saveNewRecord } from "../services/genericService";
+import { saveNewRecord } from "../services/prismaGenericService";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const NewPersonView = () => {
-  const entityName = "persons";
+  const entityName = "patients";
   const newPerson = {
     name: "",
     lastname: "",
     email: "",
-    gender: "",
+    numDocument: "",
+    sexName: "",
   };
   const [data, setData] = useState(newPerson);
   const navigate = useNavigate();

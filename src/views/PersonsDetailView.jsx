@@ -13,7 +13,15 @@ const PersonsDetailView = () => {
 
   const getData = async () => {
     const getData = await getRecordById(entityName, id);
-    setData(getData);
+    const editData = {
+      id: getData.id,
+      name: getData.name, 
+      lastname: getData.lastname, 
+      numDocument: getData.numDocument, 
+      email: getData.email, 
+      sexName: getData.sexName, 
+    }
+    setData(editData);
   };
 
   const handleChange = (e) => {
@@ -34,6 +42,7 @@ const PersonsDetailView = () => {
       cancelButtonText: "No, no deseo editarlos",
     }).then(async (result) => {
       if (result.isConfirmed) {
+        delete data.id;
         const response = await updateRecord(entityName, id, data);
         if (response) {
           Swal.fire(

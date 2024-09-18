@@ -49,7 +49,7 @@ const PersonsTable = ({ persons, handleDelete }) => {
                     <td className="px-4 py-3 text-lg">{lastname}</td>
                     <td className="px-4 py-3 text-sm">{email}</td>
                     <td className="px-4 py-3 text-sm">{numDocument}</td>
-                    <td className="px-4 py-3 capitalize text-sm">{sexName == "male" ? "Masculino" : "Femenino"}</td>
+                    <td className="px-4 py-3 capitalize text-sm">{sexName}</td>
                     <td className="px-auto py-3 flex flex-row">
                       <Link to={`/persons/${id}`}>
                         <button className="bg-orange-500 border border-orange-800 rounded px-2 py-1 ms-2">

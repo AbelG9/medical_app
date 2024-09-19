@@ -9,7 +9,7 @@ const NewSpecialistView = () => {
   const newSpecialist = {
     name: "",
     lastname: "",
-    cmp_code: "",
+    cmpCode: "",
     specialtyId: null,
   };
 

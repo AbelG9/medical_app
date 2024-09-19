@@ -1,7 +1,7 @@
 import CardView from "../components/CardView";
 
 const SpecialistsForm = ({ specialist, handleChange, handleSubmit, title }) => {
-  const { id, name, lastname, cmp_code, specialtyId } = specialist;
+  const { id, name, lastname, cmpCode, specialtyId } = specialist;
 
   return (
     <CardView>
@@ -55,11 +55,11 @@ const SpecialistsForm = ({ specialist, handleChange, handleSubmit, title }) => {
             Código CMP
           </label>
           <input
-            value={cmp_code}
+            value={cmpCode}
             onChange={handleChange}
             type="text"
-            id="cmp_code"
-            name="cmp_code"
+            id="cmpCode"
+            name="cmpCode"
             className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
         </div>

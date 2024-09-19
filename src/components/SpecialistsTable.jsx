@@ -39,12 +39,12 @@ const SpecialistsTable = ({ specialists, handleDelete }) => {
           <tbody className="bg-gray-800 rounded-tr rounded-br">
             {specialists
               ? specialists.map(
-                  ({ id, name, lastname, cmp_code, specialtyId }) => (
+                  ({ id, name, lastname, cmpCode, specialtyId }) => (
                     <tr key={id} className="rounded-bl rounded-br">
                       <td className="px-4 py-3">{id}</td>
                       <td className="px-4 py-3 text-lg">{name}</td>
                       <td className="px-4 py-3 text-lg">{lastname}</td>
-                      <td className="px-4 py-3 text-sm">{cmp_code}</td>
+                      <td className="px-4 py-3 text-sm">{cmpCode}</td>
                       <td className="px-4 py-3 text-sm">{specialtyId}</td>
                       <td className="px-auto py-3 flex flex-row">
                         <Link to={`/specialists/${id}`}>

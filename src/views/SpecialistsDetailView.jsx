@@ -18,7 +18,7 @@ const SpecialistsDetailView = () => {
       id: getData.id,
       name: getData.name,
       lastname: getData.lastname,
-      cmp_code: getData.cmp_code,
+      cmpCode: getData.cmpCode,
       specialtyId: getData.specialtyId,
     }
     setData(editSpecialist);

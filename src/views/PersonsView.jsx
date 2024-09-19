@@ -17,12 +17,12 @@ const PersonsView = () => {
   const [total, setTotal] = useState(null);
 
   const getData = async () => {
-    const getData = await getLimitedRecords(entityName, page, perPage);  
+    const getData = await getLimitedRecords(entityName, page, perPage);
     setData(getData);
   };
 
   const getDataCount = async () => {
-    const dataCount = await getRecordsCount(entityName);   
+    const dataCount = await getRecordsCount(entityName);
     setTotal(dataCount);
   };
 

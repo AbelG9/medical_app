@@ -1,5 +1,5 @@
 import SpecialtiesForm from "../components/SpecialtiesForm";
-import { getRecordById, updateRecord } from "../services/genericService";
+import { getRecordById, updateRecord } from "../services/prismaGenericService";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,13 @@ const SpecialtiesDetailView = () => {
 
   const getData = async () => {
     const getData = await getRecordById(entityName, id);
-    setData(getData);
+    const editData = {
+      id: getData.id,
+      name: getData.name,
+      description: getData.description,
+      code: getData.code,
+    };
+    setData(editData);
   };
 
   const handleChange = (e) => {
@@ -34,6 +40,7 @@ const SpecialtiesDetailView = () => {
       cancelButtonText: "No, no deseo editarlos",
     }).then(async (result) => {
       if (result.isConfirmed) {
+        delete data.id;
         const response = await updateRecord(entityName, id, data);
         if (response) {
           Swal.fire(

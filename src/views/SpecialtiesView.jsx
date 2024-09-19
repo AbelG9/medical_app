@@ -5,7 +5,7 @@ import {
   getLimitedRecords,
   getRecordsCount,
   deleteRecord,
-} from "../services/genericService";
+} from "../services/prismaGenericService";
 import CardView from "../components/CardView";
 import Paginator from "../components/Paginator";
 

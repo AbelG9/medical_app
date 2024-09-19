@@ -1,6 +1,6 @@
 import SpecialtiesForm from "../components/SpecialtiesForm";
 import { useState } from "react";
-import { saveNewRecord } from "../services/genericService";
+import { saveNewRecord } from "../services/prismaGenericService";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 

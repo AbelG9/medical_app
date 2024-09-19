@@ -5,13 +5,12 @@ import {
   getLimitedRecords,
   getRecordsCount,
   deleteRecord,
-} from "../services/genericService";
+} from "../services/prismaGenericService";
 import CardView from "../components/CardView";
 import Paginator from "../components/Paginator";
 
 const SpecialistsView = () => {
   const entityName = "specialists";
-  const useAltURL = true;
   const [data, setData] = useState(null);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
@@ -21,30 +20,29 @@ const SpecialistsView = () => {
     const getData = await getLimitedRecords(
       entityName,
       page,
-      perPage,
-      useAltURL
+      perPage
     );
     setData(getData);
   };
 
   const getDataCount = async () => {
-    const dataCount = await getRecordsCount(entityName, useAltURL);
+    const dataCount = await getRecordsCount(entityName);
     setTotal(dataCount);
   };
 
   const handleDelete = async (id) => {
     Swal.fire({
-      title: "Desea eliminar el/la especialista?",
+      title: "Desea eliminar este registro de especialista?",
       text: "Esta acción es irreversible 🙀!",
       confirmButtonText: "Si, deseo eliminarla",
       showCancelButton: true,
       cancelButtonText: "No, no deseo eliminarla",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const response = await deleteRecord(entityName, id, useAltURL);
+        const response = await deleteRecord(entityName, id);
         if (response) {
           Swal.fire(
-            "Se ha eliminado el/la especialista correctamente!",
+            "Se ha eliminado el registro de especialista correctamente!",
             "",
             "success"
           );

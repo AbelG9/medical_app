@@ -1,5 +1,5 @@
 import SpecialistsForm from "../components/SpecialistsForm";
-import { getRecordById, updateRecord } from "../services/genericService";
+import { getRecordById, updateRecord } from "../services/prismaGenericService";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,15 +7,21 @@ import Swal from "sweetalert2";
 
 const SpecialistsDetailView = () => {
   const entityName = "specialists";
-  const useAltURL = true;
 
   const [data, setData] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
   const getData = async () => {
-    const getData = await getRecordById(entityName, id, useAltURL);
-    setData(getData);
+    const getData = await getRecordById(entityName, id);
+    const editSpecialist = {
+      id: getData.id,
+      name: getData.name,
+      lastname: getData.lastname,
+      cmp_code: getData.cmp_code,
+      specialtyId: getData.specialtyId,
+    }
+    setData(editSpecialist);
   };
 
   const handleChange = (e) => {
@@ -36,7 +42,8 @@ const SpecialistsDetailView = () => {
       cancelButtonText: "No, no deseo editarlos",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const response = await updateRecord(entityName, id, data, useAltURL);
+        delete data.id;
+        const response = await updateRecord(entityName, id, data);
         if (response) {
           Swal.fire(
             "Se ha guardado los datos de el/la especialista correctamente!",

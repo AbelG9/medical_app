@@ -1,7 +1,7 @@
 import CardView from "../components/CardView";
 
 const SpecialistsForm = ({ specialist, handleChange, handleSubmit, title }) => {
-  const { id, name, lastname, cmp_code, specialty_code } = specialist;
+  const { id, name, lastname, cmp_code, specialtyId } = specialist;
 
   return (
     <CardView>
@@ -65,14 +65,14 @@ const SpecialistsForm = ({ specialist, handleChange, handleSubmit, title }) => {
         </div>
         <div className="relative mb-4">
           <label htmlFor="specialty_code" className="leading-7 text-md">
-            Código Especialidad
+            Especialidad
           </label>
           <input
-            value={specialty_code}
+            value={specialtyId}
             onChange={handleChange}
-            type="text"
-            id="specialty_code"
-            name="specialty_code"
+            type="number"
+            id="specialtyId"
+            name="specialtyId"
             className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
         </div>

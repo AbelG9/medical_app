@@ -29,7 +29,7 @@ const SpecialistsTable = ({ specialists, handleDelete }) => {
                 Código CMP
               </th>
               <th className="px-4 py-3 title-font tracking-wider font-medium text-sm">
-                Código Especialidad
+                Especialidad
               </th>
               <th className="px-4 py-3 title-font tracking-wider font-medium text-sm">
                 Acciones
@@ -39,13 +39,13 @@ const SpecialistsTable = ({ specialists, handleDelete }) => {
           <tbody className="bg-gray-800 rounded-tr rounded-br">
             {specialists
               ? specialists.map(
-                  ({ id, name, lastname, cmp_code, specialty_code }) => (
+                  ({ id, name, lastname, cmp_code, specialtyId }) => (
                     <tr key={id} className="rounded-bl rounded-br">
                       <td className="px-4 py-3">{id}</td>
                       <td className="px-4 py-3 text-lg">{name}</td>
                       <td className="px-4 py-3 text-lg">{lastname}</td>
                       <td className="px-4 py-3 text-sm">{cmp_code}</td>
-                      <td className="px-4 py-3 text-sm">{specialty_code}</td>
+                      <td className="px-4 py-3 text-sm">{specialtyId}</td>
                       <td className="px-auto py-3 flex flex-row">
                         <Link to={`/specialists/${id}`}>
                           <button className="bg-orange-500 border border-orange-800 rounded px-2 py-1 ms-2">

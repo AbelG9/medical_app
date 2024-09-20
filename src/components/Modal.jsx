@@ -9,8 +9,8 @@ const Modal = ({
   const {
     doctor_name,
     doctor_lastname,
-    start_timedate,
-    end_timedate,
+    startTimeDate,
+    endTimeDate,
     patient_name,
     patient_lastname,
     description,
@@ -37,27 +37,27 @@ const Modal = ({
                   <form className="bg-gray-700 text-white shadow-md rounded px-2 pt-6 pb-8 w-full">
                     <label
                       className="block text-sm font-semibold mb-1"
-                      htmlFor="start_timedate"
+                      htmlFor="startTimeDate"
                     >
                       Fecha y hora de inicio
                     </label>
                     <input
                       className="readonly mb-2 shadow appearance-none border rounded w-full py-2 px-1 text-black"
-                      name="start_timedate"
-                      value={start_timedate.slice(0, -6)}
+                      name="startTimeDate"
+                      value={startTimeDate.slice(0, -6)}
                       type="datetime-local"
                       onChange={handleChange}
                     ></input>
                     <label
                       className="block text-sm font-semibold mb-1"
-                      htmlFor="end_timedate"
+                      htmlFor="endTimeDate"
                     >
                       Fecha y hora de fin
                     </label>
                     <input
                       className="readonly mb-2 shadow appearance-none border rounded w-full py-2 px-1 text-black"
-                      name="end_timedate"
-                      value={end_timedate.slice(0, -6)}
+                      name="endTimeDate"
+                      value={endTimeDate.slice(0, -6)}
                       type="datetime-local"
                       onChange={handleChange}
                     ></input>

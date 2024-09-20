@@ -134,7 +134,7 @@ const getRecordsByParams = async (entityName, searchParam, value) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 const getRecordsByDateRange = async (entityName, start, end) => {
   try {

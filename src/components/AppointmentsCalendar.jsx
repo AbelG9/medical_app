@@ -35,13 +35,13 @@ const AppointmentsCalendar = ({
   const calendarRef = useRef(null);
 
   const handleDateSelect = (selectInfo) => {
-    if (!appointmentData.doctor_id || !appointmentData.patient_id) {
+    if (!appointmentData.doctorId || !appointmentData.patientId) {
       Swal.fire("Complete los datos necesarios!", "", "error");
     } else {
       const newData = {
         ...appointmentData,
-        start_timedate: selectInfo.startStr,
-        end_timedate: selectInfo.endStr,
+        startTimeDate: selectInfo.startStr,
+        endTimeDate: selectInfo.endStr,
       };
       setAppointmentData(newData);
       setShowModal(true);
@@ -117,7 +117,7 @@ const AppointmentsCalendar = ({
     setRenderOptions(false);
     const newData = {
       ...appointmentData,
-      doctor_id: value,
+      doctorId: value,
       doctor_name: optionName,
       doctor_lastname: optionLastName,
     };
@@ -131,7 +131,7 @@ const AppointmentsCalendar = ({
     setRenderOptionsPatients(false);
     const newData = {
       ...appointmentData,
-      patient_id: value,
+      patientId: value,
       patient_name: optionName,
       patient_lastname: optionLastName,
     };
@@ -171,7 +171,7 @@ const AppointmentsCalendar = ({
     if (startDate) {
       getAllAppointments();
     }
-  },[startDate])
+  }, [startDate]);
 
   const renderLi = () => {
     let li = [];

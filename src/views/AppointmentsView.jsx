@@ -3,20 +3,20 @@ import CardView from "../components/CardView";
 import Modal from "../components/Modal";
 import AppointmentsCalendar from "../components/AppointmentsCalendar";
 import Swal from "sweetalert2";
-import { saveNewRecord } from "../services/genericService";
+import { saveNewRecord } from "../services/prismaGenericService.js";
 import { useNavigate } from "react-router-dom";
 
 const AppointmentsView = () => {
   const [showModal, setShowModal] = useState(false);
   const [appointmentData, setAppointmentData] = useState({
-    doctor_id: null,
-    patient_id: null,
+    doctorId: null,
+    patientId: null,
     doctor_name: "",
     doctor_lastname: "",
     patient_name: "",
     patient_lastname: "",
-    start_timedate: null,
-    end_timedate: null,
+    startTimeDate: null,
+    endTimeDate: null,
     description: "",
   });
   const entityName = "appointments";
@@ -31,7 +31,14 @@ const AppointmentsView = () => {
       cancelButtonText: "No, no deseo guardarlos",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const response = await saveNewRecord(entityName, appointmentData, true);
+        const saveAppointmentData = {
+          doctorId: appointmentData.doctorId,
+          patientId: appointmentData.patientId,
+          startTimeDate: appointmentData.startTimeDate,
+          endTimeDate: appointmentData.endTimeDate,
+          details: appointmentData.description,
+        };
+        const response = await saveNewRecord(entityName, saveAppointmentData);
         if (response) {
           Swal.fire(
             "Se ha guardado los datos de la cita correctamente!",
@@ -58,17 +65,17 @@ const AppointmentsView = () => {
 
   const clearData = () => {
     setAppointmentData({
-      doctor_id: null,
-      patient_id: null,
+      doctorId: null,
+      patientId: null,
       doctor_name: "",
       doctor_lastname: "",
       patient_name: "",
       patient_lastname: "",
-      start_timedate: null,
-      end_timedate: null,
+      startTimeDate: null,
+      endTimeDate: null,
       description: "",
     });
-  }
+  };
 
   return (
     <CardView>

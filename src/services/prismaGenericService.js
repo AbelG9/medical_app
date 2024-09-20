@@ -97,6 +97,27 @@ const deleteRecord = async (entityName, id) => {
   }
 };
 
+const findRecordbyNameOrLastname = async (entityName, title, value) => {
+  console.log(value);
+  
+  try {
+    const baseUrl = `${PRISMA_URL}/${entityName}/byNameOrLastname`;
+    let params = new URLSearchParams();
+    params.append(title, encodeURIComponent(value));
+    const url = `${baseUrl}?${params.toString()}`;
+    const options = {
+      method: "get",
+      data: null,
+    };    
+    const response = await axios({ url, ...options });
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
 export {
   getLimitedRecords,
   getRecordsCount,
@@ -104,4 +125,5 @@ export {
   saveNewRecord,
   updateRecord,
   deleteRecord,
+  findRecordbyNameOrLastname,
 };

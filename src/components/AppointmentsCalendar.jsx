@@ -3,6 +3,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { findRecord } from "../services/genericService";
+import { findRecordbyNameOrLastname } from "../services/prismaGenericService";
 import Finder from "./Finder";
 import { useState } from "react";
 import Swal from "sweetalert2";
@@ -42,9 +43,8 @@ const AppointmentsCalendar = ({
   };
 
   const searchText = async () => {
-    const response = await findRecord("specialists", true, "name", textValue);
+    const response = await findRecordbyNameOrLastname("specialists", "value", textValue);
     let options = [];
-
     for (let i = 0; i < response.length; i++) {
       options.push({
         optionName: response[i].name,
@@ -57,10 +57,9 @@ const AppointmentsCalendar = ({
   };
 
   const searchTextPatients = async () => {
-    const response = await findRecord(
-      "persons",
-      false,
-      "name",
+    const response = await findRecordbyNameOrLastname(
+      "patients",
+      "value",
       textValuePatients
     );
     let options = [];

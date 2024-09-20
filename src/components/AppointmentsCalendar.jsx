@@ -2,8 +2,10 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { findRecord } from "../services/genericService";
-import { findRecordbyNameOrLastname } from "../services/prismaGenericService";
+import {
+  findRecordbyNameOrLastname,
+  getRecordsByParams,
+} from "../services/prismaGenericService";
 import Finder from "./Finder";
 import { useState } from "react";
 import Swal from "sweetalert2";
@@ -25,7 +27,6 @@ const AppointmentsCalendar = ({
   const [renderOptions, setRenderOptions] = useState(false);
   const [renderOptionsPatients, setRenderOptionsPatients] = useState(false);
 
-  const [specialistId, setSpecialistId] = useState(0);
   const [events, setEvents] = useState([]);
 
   const handleDateSelect = (selectInfo) => {
@@ -43,7 +44,11 @@ const AppointmentsCalendar = ({
   };
 
   const searchText = async () => {
-    const response = await findRecordbyNameOrLastname("specialists", "value", textValue);
+    const response = await findRecordbyNameOrLastname(
+      "specialists",
+      "value",
+      textValue
+    );
     let options = [];
     for (let i = 0; i < response.length; i++) {
       options.push({
@@ -79,18 +84,22 @@ const AppointmentsCalendar = ({
     setTextValue(e.target.value);
   };
 
-  const searchAppointmentsBySpecialist = async () => {
-    const response = await findRecord(
+  const searchAppointmentsBySpecialist = async (value) => {
+    const response = await getRecordsByParams(
       "appointments",
-      true,
-      "doctor_id",
-      specialistId
+      "doctorId",
+      value
     );
+    console.log(response);
+    
+
     let eventsResponse = [];
     for (let i = 0; i < response.length; i++) {
       eventsResponse.push({
-        title: response[i].patient_name + " " + response[i].patient_lastname,
-        start: response[i].start_timedate,
+        id: response[i].id,
+        title: response[i].patient.name + " " + response[i].patient.lastname,
+        start: response[i].startTimeDate,
+        end: response[i].endTimeDate,
       });
     }
     setEvents(eventsResponse);
@@ -111,7 +120,7 @@ const AppointmentsCalendar = ({
       doctor_lastname: optionLastName,
     };
     setAppointmentData(newData);
-    searchAppointmentsBySpecialist();
+    searchAppointmentsBySpecialist(value);
   };
 
   const selectPatient = (optionName, optionLastName, value) => {

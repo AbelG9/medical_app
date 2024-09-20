@@ -98,8 +98,6 @@ const deleteRecord = async (entityName, id) => {
 };
 
 const findRecordbyNameOrLastname = async (entityName, title, value) => {
-  console.log(value);
-  
   try {
     const baseUrl = `${PRISMA_URL}/${entityName}/byNameOrLastname`;
     let params = new URLSearchParams();
@@ -108,7 +106,27 @@ const findRecordbyNameOrLastname = async (entityName, title, value) => {
     const options = {
       method: "get",
       data: null,
-    };    
+    };
+    const response = await axios({ url, ...options });
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getRecordsByParams = async (entityName, searchParam, value) => {
+  try {
+    const baseUrl = `${PRISMA_URL}/${entityName}/byParamId`;
+    let params = new URLSearchParams();
+    params.append("searchParam", encodeURIComponent(searchParam));
+    params.append("value", encodeURIComponent(value));
+    const url = `${baseUrl}?${params.toString()}`;
+    const options = {
+      method: "get",
+      data: null,
+    };
     const response = await axios({ url, ...options });
     if (response.status === 200) {
       return response.data;
@@ -126,4 +144,5 @@ export {
   updateRecord,
   deleteRecord,
   findRecordbyNameOrLastname,
+  getRecordsByParams,
 };

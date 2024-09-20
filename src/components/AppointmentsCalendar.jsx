@@ -5,9 +5,10 @@ import interactionPlugin from "@fullcalendar/interaction";
 import {
   findRecordbyNameOrLastname,
   getRecordsByParams,
+  getRecordsByDateRange,
 } from "../services/prismaGenericService";
 import Finder from "./Finder";
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Swal from "sweetalert2";
 
 const AppointmentsCalendar = ({
@@ -28,6 +29,10 @@ const AppointmentsCalendar = ({
   const [renderOptionsPatients, setRenderOptionsPatients] = useState(false);
 
   const [events, setEvents] = useState([]);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
+  const calendarRef = useRef(null);
 
   const handleDateSelect = (selectInfo) => {
     if (!appointmentData.doctor_id || !appointmentData.patient_id) {
@@ -90,9 +95,6 @@ const AppointmentsCalendar = ({
       "doctorId",
       value
     );
-    console.log(response);
-    
-
     let eventsResponse = [];
     for (let i = 0; i < response.length; i++) {
       eventsResponse.push({
@@ -135,6 +137,41 @@ const AppointmentsCalendar = ({
     };
     setAppointmentData(newData);
   };
+
+  const getAllAppointments = async () => {
+    const response = await getRecordsByDateRange(
+      "appointments",
+      startDate,
+      endDate
+    );
+    let eventsResponse = [];
+    for (let i = 0; i < response.length; i++) {
+      eventsResponse.push({
+        id: response[i].id,
+        title: response[i].patient.name + " " + response[i].patient.lastname,
+        start: response[i].startTimeDate,
+        end: response[i].endTimeDate,
+      });
+    }
+    setEvents(eventsResponse);
+  };
+
+  const handleDatesSet = (arg) => {
+    setStartDate(arg.start.toISOString());
+    setEndDate(arg.end.toISOString());
+  };
+
+  useEffect(() => {
+    const calendarApi = calendarRef.current.getApi();
+    setStartDate(calendarApi.view.activeStart.toISOString());
+    setEndDate(calendarApi.view.activeEnd.toISOString());
+  }, []);
+
+  useEffect(() => {
+    if (startDate) {
+      getAllAppointments();
+    }
+  },[startDate])
 
   const renderLi = () => {
     let li = [];
@@ -218,6 +255,8 @@ const AppointmentsCalendar = ({
         // eventClick={handleEventClick}
         select={handleDateSelect}
         locale="es"
+        ref={calendarRef}
+        datesSet={handleDatesSet}
       />
     </>
   );

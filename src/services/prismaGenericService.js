@@ -136,6 +136,26 @@ const getRecordsByParams = async (entityName, searchParam, value) => {
   }
 }
 
+const getRecordsByDateRange = async (entityName, start, end) => {
+  try {
+    const baseUrl = `${PRISMA_URL}/${entityName}/byDateRange`;
+    let params = new URLSearchParams();
+    params.append("start", start);
+    params.append("end", end);
+    const url = `${baseUrl}?${params.toString()}`;
+    const options = {
+      method: "get",
+      data: null,
+    };
+    const response = await axios({ url, ...options });
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   getLimitedRecords,
   getRecordsCount,
@@ -145,4 +165,5 @@ export {
   deleteRecord,
   findRecordbyNameOrLastname,
   getRecordsByParams,
+  getRecordsByDateRange,
 };
